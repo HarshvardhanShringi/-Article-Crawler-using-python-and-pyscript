@@ -1,0 +1,96 @@
+<html>
+
+<head>
+
+<title>
+
+HTML Forms with PyScript     
+    
+</title>
+
+<link rel="stylesheet" href="https://pyscript.net/alpha/pyscript.css" />
+<script defer src="https://pyscript.net/alpha/pyscript.js"></script>
+
+</head>
+
+<style>
+    input[type=text], select {
+      width: 100%;
+      padding: 12px 20px;
+      margin: 8px 0;
+      display: inline-block;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+    }
+    
+    input[type=submit] {
+      width: 100%;
+      background-color: #4c4faf;
+      color: white;
+      padding: 14px 20px;
+      margin: 8px 0;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    
+    input[type=submit]:hover {
+      background-color: #45a049;
+    }
+    
+    p {
+      border-radius: 5px;
+      background-color: #f2f2f2;
+      padding: 20px;
+    }
+    </style>
+
+<body>
+
+    <form onsubmit="return false">
+        <label for="url-link">Enter URL:</label><br>
+        <input type="text" id="url-link" name="url-link" value=""><br>
+
+
+
+        <input pys-onClick="sub" type="submit" id="btn-form" value="submit">
+      
+
+    </form> 
+ 
+    <p>Output:</p>
+    <p id = 'output'></p>
+
+
+
+    <py-env>
+      - goose3
+      - Goose
+
+  </py-env>
+
+
+    <py-script>
+
+      from goose3 import Goose
+      g = Goose()
+      article = g.extract(Element('url-link').value)
+
+      
+      def sub(*args,**kwargs):
+        result_place = Element('output')
+        result_place.write(article.cleaned_text)
+
+                        
+    </py-script>
+    
+
+
+
+  
+
+
+
+</body>
+</html>
